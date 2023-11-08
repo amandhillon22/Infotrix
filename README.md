@@ -21,3 +21,47 @@ The program will fetch the latest exchange rates and display the converted amoun
 Technologies Used
 OkHttp: Used to make HTTP requests to the "frankfurter" API.
 JSON: Utilized for parsing the JSON response from the API.
+
+
+
+Here's a list of the commands used in your project with a brief description of each:
+
+javac CurrConverter.java - Compiles the Java source code in the CurrConverter.java file, creating the bytecode class file.
+
+java CurrConverter - Executes the Java program by running the CurrConverter class, which contains the main method.
+
+Scanner scan = new Scanner(System.in) - Creates a Scanner object to read input from the command line.
+
+scan.nextLine() - Reads the next line of text input from the user.
+
+ArrayList<String> favorites = new ArrayList<>() - Initializes an ArrayList to store favorite currencies.
+
+convertFrom = scan.nextLine() - Stores the currency to convert from, which is input by the user.
+
+convertTo = scan.nextLine() - Stores the currency to convert to, which is input by the user.
+
+quantity = scan.nextBigDecimal() - Reads a BigDecimal value representing the quantity of the source currency to convert.
+
+OkHttpClient client = new OkHttpClient() - Creates an instance of the OkHttp client for making HTTP requests.
+
+Request request = new Request.Builder().url(urlString).get().build() - Constructs an HTTP request using OkHttp, specifying the URL and request method (GET).
+
+Response response = client.newCall(request).execute() - Executes the HTTP request and stores the response.
+
+response.isSuccessful() - Checks if the HTTP request was successful (status code 200).
+
+response.body().string() - Retrieves the response body as a string.
+
+JSONObject jsonObject = new JSONObject(stringResponse) - Parses the JSON response string into a JSONObject.
+
+JSONObject ratesObject = jsonObject.getJSONObject("rates") - Extracts the "rates" object from the JSON response.
+
+ratesObject.getBigDecimal(convertTo.toUpperCase()) - Retrieves the exchange rate for the target currency.
+
+rate.multiply(quantity) - Calculates the converted amount by multiplying the rate with the quantity.
+
+System.out.println("Converted amount: " + result) - Displays the converted amount to the user.
+
+System.err.println("HTTP request failed with code: " + response.code()) - Prints an error message in case of an unsuccessful HTTP request.
+
+System.err.println("An error occurred while making the HTTP request: " + e.getMessage()) - Prints an error message when an exception occurs during the HTTP request.
